@@ -1,5 +1,6 @@
 package com.toyproject.jobposting.entity;
 
+import com.toyproject.jobposting.dto.UserDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,8 +32,17 @@ public class User {
 
 
     // 연관 관계 편의 메소드 //
-    public void setApplications(Application application){
+    public void addApplications(Application application){
         applications.add(application);
         application.setUser(this);
+    }
+
+    public void changeToUser(UserDto userDto){
+        this.identity = userDto.getIdentity();
+        this.name = userDto.getName();
+        this.email = userDto.getEmail();
+        this.phoneNumber = userDto.getPhoneNumber();
+        this.userStatus = userDto.getUserStatus();
+        this.applications = userDto.getApplications();
     }
 }

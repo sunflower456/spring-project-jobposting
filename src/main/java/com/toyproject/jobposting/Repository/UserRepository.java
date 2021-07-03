@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -22,5 +23,21 @@ public class UserRepository {
                 .setParameter("identity", identity)
                 .getResultList();
         return users;
+    }
+
+    public List<User> findUsers(){
+        return em.createQuery("select u from User u", User.class)
+                .getResultList();
+    }
+
+    public User findOne(Long id){
+        return em.find(User.class, id);
+    }
+
+    public void deleteUser(Long id){
+        em.createQuery("delete from User u where u.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+
     }
 }

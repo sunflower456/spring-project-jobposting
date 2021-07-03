@@ -31,4 +31,28 @@ public class UserService {
         return userRepository.findByIdentity(identity);
     }
 
+    public List<User> findUser() {
+        return userRepository.findUsers();
+    }
+
+    @Transactional
+    public User updateUser(Long id, User target){
+        User find = userRepository.findOne(id);
+        find.setPhoneNumber(target.getPhoneNumber());
+        find.setUserStatus(target.getUserStatus());
+        find.setName(target.getName());
+        find.setPassword(target.getPassword());
+        find.setIdentity(target.getIdentity());
+        find.setEmail(target.getEmail());
+        find.setApplications(target.getApplications());
+        return find;
+    }
+
+    public User findOne(Long id){
+        return userRepository.findOne(id);
+    }
+
+    public void deleteUser(Long id){
+        userRepository.deleteUser(id);
+    }
 }
