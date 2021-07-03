@@ -52,6 +52,7 @@ public class UserService {
         return userRepository.findOne(id);
     }
 
+    @Transactional
     public void deleteUser(Long id){
         userRepository.deleteUser(id);
     }

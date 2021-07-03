@@ -1,6 +1,7 @@
 package com.toyproject.jobposting.entity;
 
 import com.sun.istack.NotNull;
+import com.toyproject.jobposting.dto.PostingDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,8 +25,8 @@ public class Posting {
     private String title;
 
     private LocalDateTime annoStaDate; // posting announcement start date
-
     private LocalDateTime annoEndDate; // posting announcement end date
+
     private String desc;
 
 
@@ -45,4 +46,13 @@ public class Posting {
         questions.add(question);
     }
 
+    public void changeToPosting(PostingDto postingDto){
+        this.title = postingDto.getTitle();
+        this.annoStaDate = postingDto.getAnnoStaDate();
+        this.annoEndDate = postingDto.getAnnoEndDate();
+        this.desc = postingDto.getDesc();
+        this.postStatus = postingDto.getPostStatus();
+        this.applications = postingDto.getApplications();
+        this.questions = postingDto.getQuestions();
+    }
 }
