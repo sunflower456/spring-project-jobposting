@@ -1,6 +1,7 @@
 package com.toyproject.jobposting.entity;
 
 import com.sun.istack.NotNull;
+import com.toyproject.jobposting.dto.IntroduceInfoDto;
 import com.toyproject.jobposting.dto.PostingDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,10 +34,10 @@ public class Posting {
     @Enumerated(EnumType.STRING)
     private PostStatus postStatus;
 
-    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "posting", cascade = CascadeType.MERGE)
     private List<Application> applications = new ArrayList<>();
 
-    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "posting", cascade = CascadeType.MERGE)
     private List<Question> questions = new ArrayList<>();
 
     public void addApplication(Application application){
@@ -46,13 +47,4 @@ public class Posting {
         questions.add(question);
     }
 
-    public void changeToPosting(PostingDto postingDto){
-        this.title = postingDto.getTitle();
-        this.annoStaDate = postingDto.getAnnoStaDate();
-        this.annoEndDate = postingDto.getAnnoEndDate();
-        this.desc = postingDto.getDesc();
-        this.postStatus = postingDto.getPostStatus();
-        this.applications = postingDto.getApplications();
-        this.questions = postingDto.getQuestions();
-    }
 }

@@ -21,8 +21,6 @@ public class PostingDto {
 
     private PostStatus postStatus;
 
-    private List<Application> applications = new ArrayList<>();
-
     private List<Question> questions = new ArrayList<>();
 
     public void changeToDto(Posting posting){
@@ -31,7 +29,6 @@ public class PostingDto {
         this.annoEndDate = posting.getAnnoEndDate();
         this.desc = posting.getDesc();
         this.postStatus = posting.getPostStatus();
-        this.applications = posting.getApplications();
         this.questions = posting.getQuestions();
     }
 }

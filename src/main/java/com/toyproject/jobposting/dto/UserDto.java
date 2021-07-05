@@ -15,7 +15,6 @@ public class UserDto {
     private String email;
     private String phoneNumber;
     private UserStatus userStatus;
-    private List<Application> applications = new ArrayList<>();
 
     public void changeToDto(User user){
         this.identity = user.getIdentity();
@@ -23,7 +22,6 @@ public class UserDto {
         this.email = user.getEmail();
         this.phoneNumber = user.getPhoneNumber();
         this.userStatus = user.getUserStatus();
-        this.applications = user.getApplications();
     }
 
 }

@@ -40,7 +40,7 @@ public class PostingService {
         Posting find = postingRepository.findOne(id);
         find.setTitle(target.getTitle());
         find.setDesc(target.getDesc());
-        find.setQuestions(target.getQuestions());
+        //find.setQuestions(target.getQuestions());
         find.setPostStatus(target.getPostStatus());
         find.setAnnoEndDate(target.getAnnoEndDate());
         find.setAnnoStaDate(target.getAnnoStaDate());

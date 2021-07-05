@@ -43,6 +43,5 @@ public class User {
         this.email = userDto.getEmail();
         this.phoneNumber = userDto.getPhoneNumber();
         this.userStatus = userDto.getUserStatus();
-        this.applications = userDto.getApplications();
     }
 }

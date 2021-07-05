@@ -1,5 +1,7 @@
 package com.toyproject.jobposting.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.toyproject.jobposting.dto.SchoolInfoDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,8 +20,9 @@ public class SchoolInfo {
     @Enumerated(EnumType.STRING)
     private SchoolStatus schoolStatus;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="application_id")
+    @JoinColumn(name="application_id", nullable = false)
     private Application application;
 
     private String orgName;
@@ -28,4 +31,9 @@ public class SchoolInfo {
     private LocalDateTime orgEndDate;
     private String jobTask; // only when career
 
+    // 연관 관계 편의 메소드 //
+//    public void setApplication(Application application) {
+//        this.application = application;
+//        application.getSchoolInfos().add(this);
+//    }
 }

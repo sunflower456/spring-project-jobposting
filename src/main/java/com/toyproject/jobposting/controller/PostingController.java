@@ -7,6 +7,7 @@ import com.toyproject.jobposting.entity.User;
 import com.toyproject.jobposting.service.PostingService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostingController {
     private final PostingService postingService;
+    private final ModelMapper modelMapper;
 
     @GetMapping("/posts")
     public ReadPostResponse posts(){
@@ -47,11 +49,9 @@ public class PostingController {
 
     @PostMapping("/posts")
     public void savePosting(@RequestBody @Valid SavePostingRequest request){
-        Posting posting = new Posting();
-        User user = new User();
+        Posting posting = modelMapper.map(request.postingDto,Posting.class);
+        User user = modelMapper.map(request.userDto, User.class);
 
-        posting.changeToPosting(request.getPostingDto());
-        user.changeToUser(request.getUserDto());
 
         postingService.savePosting(posting, user);
 
@@ -59,8 +59,7 @@ public class PostingController {
 
     @PutMapping("/posts/{id}")
     public void editPost(@RequestBody @Valid PostingDto request, @PathVariable Long id){
-        Posting posting = new Posting();
-        posting.changeToPosting(request);
+        Posting posting = modelMapper.map(request, Posting.class);
 
         postingService.updatePosting(id, posting);
     }
