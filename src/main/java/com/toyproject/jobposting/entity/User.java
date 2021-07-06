@@ -1,17 +1,18 @@
 package com.toyproject.jobposting.entity;
 
 import com.toyproject.jobposting.dto.UserDto;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
+@Builder
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id @GeneratedValue
@@ -43,5 +44,11 @@ public class User {
         this.email = userDto.getEmail();
         this.phoneNumber = userDto.getPhoneNumber();
         this.userStatus = userDto.getUserStatus();
+    }
+
+    public UserDto toDto(){
+        return UserDto.builder()
+                .identity(identity).name(name).email(email)
+                .phoneNumber(phoneNumber).userStatus(userStatus).build();
     }
 }

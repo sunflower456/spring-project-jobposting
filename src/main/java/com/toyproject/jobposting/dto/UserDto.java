@@ -3,11 +3,15 @@ package com.toyproject.jobposting.dto;
 import com.toyproject.jobposting.entity.Application;
 import com.toyproject.jobposting.entity.User;
 import com.toyproject.jobposting.entity.UserStatus;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
+@Setter
 @Data
 public class UserDto {
     private String identity; // id
@@ -24,4 +28,10 @@ public class UserDto {
         this.userStatus = user.getUserStatus();
     }
 
+    public User toEntity(){
+        return User.builder()
+                .identity(identity).name(name).email(email)
+                .phoneNumber(phoneNumber).userStatus(userStatus)
+                .build();
+    }
 }
