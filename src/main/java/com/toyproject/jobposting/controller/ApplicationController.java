@@ -5,7 +5,10 @@ import com.toyproject.jobposting.dto.ApplicationDto;
 import com.toyproject.jobposting.dto.PostingDto;
 import com.toyproject.jobposting.entity.Application;
 import com.toyproject.jobposting.entity.Posting;
+import com.toyproject.jobposting.entity.User;
 import com.toyproject.jobposting.service.ApplicationService;
+import com.toyproject.jobposting.service.PostingService;
+import com.toyproject.jobposting.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,6 +22,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ApplicationController {
     private final ApplicationService applicationService;
+    private final UserService userService;
+    private final PostingService postingService;
     private final ModelMapper modelMapper;
 
     @GetMapping("/apps")
@@ -45,7 +50,7 @@ public class ApplicationController {
     @PostMapping("/apps")
     public void saveApps(@RequestBody @Valid AppSaveDto request){
         Application app = modelMapper.map(request, Application.class);
-        System.out.println("app = " + app.getId());
+
         applicationService.save(app);
     }
 

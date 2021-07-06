@@ -21,14 +21,19 @@ public class Application {
     @Column(name = "application_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User user;
+    @Column(name="user_id")
+    private Long user_app_id;
+    @Column(name="posting_id")
+    private Long post_app_id;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="posting_id")
-    private Posting posting;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="user_id")
+//    private User user;
+//
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="posting_id")
+//    private Posting posting;
 
     @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
     private List<SchoolInfo> schoolInfos = new ArrayList<>();
@@ -40,30 +45,21 @@ public class Application {
     private List<IntroduceInfo> introduceInfos = new ArrayList<>();
 
 
-    public void changeToApp(ApplicationDto applicationDto){
-        this.user = applicationDto.getUser();
-        this.posting = applicationDto.getPosting();
-        this.schoolInfos = applicationDto.getSchoolInfos();
-        this.qualifyInfos = applicationDto.getQualifyInfos();
-        this.introduceInfos = applicationDto.getIntroduceInfos();
-    }
-
-
     // 연관 관계 편의 메소드 //
-    public void setUser(User user) {
-        this.user = user;
-        if (user.getApplications().size() > 0) {
-            user.getApplications().add(this);
-        }
-    }
-
-    public void setPosting(Posting posting){
-        this.posting = posting;
-        if (posting.getApplications().size() > 0) {
-            posting.getApplications().add(this);
-        }
-
-    }
+//    public void setUser(User user) {
+//        this.user = user;
+//        if (!user.getApplications().isEmpty()) {
+//            user.getApplications().add(this);
+//        }
+//    }
+//
+//    public void setPosting(Posting posting){
+//        this.posting = posting;
+//        if (!posting.getApplications().isEmpty()) {
+//            posting.getApplications().add(this);
+//        }
+//
+//    }
 
 
     // add method //

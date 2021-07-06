@@ -2,6 +2,7 @@ package com.toyproject.jobposting.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,12 @@ public class AppSaveDto {
     // user
 //    private UserDto user;
     // post
-//    private PostingDto posting;
+//    private PostxingDto posting;
 
-    private Long userid;
-    private Long postingId;
+    @NotNull
+    private Long user_app_id;
+    @NotNull
+    private Long post_app_id;
     // school info
     private List<SchoolInfoDto> schoolInfos = new ArrayList<>();
 

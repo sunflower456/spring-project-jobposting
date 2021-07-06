@@ -18,15 +18,15 @@ public class Question {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "posting_id")
+    @JoinColumn(name = "posting_id", nullable = false)
     private Posting posting;
 
     private String question;
 
 
     // 연관 관계 편의 메소드 //
-    public void setPosting(Posting posting) {
-        this.posting = posting;
-        posting.getQuestions().add(this);
-    }
+//    public void setPosting(Posting posting) {
+//        this.posting = posting;
+//        posting.getQuestions().add(this);
+//    }
 }

@@ -27,15 +27,15 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Application> applications = new ArrayList<>();
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
+//    private List<Application> applications = new ArrayList<>();
 
 
     // 연관 관계 편의 메소드 //
-    public void addApplications(Application application){
-        applications.add(application);
-        application.setUser(this);
-    }
+//    public void addApplications(Application application){
+//        applications.add(application);
+//        application.setUser(this);
+//    }
 
     public void changeToUser(UserDto userDto){
         this.identity = userDto.getIdentity();

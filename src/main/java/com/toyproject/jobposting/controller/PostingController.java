@@ -1,10 +1,14 @@
 package com.toyproject.jobposting.controller;
 
 import com.toyproject.jobposting.dto.PostingDto;
+import com.toyproject.jobposting.dto.QuestionDto;
 import com.toyproject.jobposting.dto.UserDto;
+import com.toyproject.jobposting.entity.Application;
 import com.toyproject.jobposting.entity.Posting;
+import com.toyproject.jobposting.entity.Question;
 import com.toyproject.jobposting.entity.User;
 import com.toyproject.jobposting.service.PostingService;
+import com.toyproject.jobposting.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -18,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostingController {
     private final PostingService postingService;
+    private final UserService userService;
     private final ModelMapper modelMapper;
 
     @GetMapping("/posts")
@@ -26,8 +31,7 @@ public class PostingController {
         List<PostingDto> postingDtoList = new ArrayList<>();
         ReadPostResponse<List<PostingDto>> response = new ReadPostResponse<>();
         for (Posting posting : postingList) {
-            PostingDto postingDto = new PostingDto();
-            postingDto.changeToDto(posting);
+            PostingDto postingDto = modelMapper.map(posting, PostingDto.class);
             postingDtoList.add(postingDto);
         }
         response.setData(postingDtoList);
@@ -37,8 +41,7 @@ public class PostingController {
     @GetMapping("/posts/{id}")
     public ReadPostResponse postsById(@PathVariable Long id){
         Posting posting = postingService.findOne(id);
-        PostingDto postingDto = new PostingDto();
-        postingDto.changeToDto(posting);
+        PostingDto postingDto = modelMapper.map(posting, PostingDto.class);
         ReadPostResponse<List<PostingDto>> result = new ReadPostResponse<>();
         List<PostingDto> postingDtoList = new ArrayList<>();
         postingDtoList.add(postingDto);
@@ -46,14 +49,13 @@ public class PostingController {
         return result;
     }
 
+    //posting get
 
     @PostMapping("/posts")
     public void savePosting(@RequestBody @Valid SavePostingRequest request){
         Posting posting = modelMapper.map(request.postingDto,Posting.class);
-        User user = modelMapper.map(request.userDto, User.class);
-
-
-        postingService.savePosting(posting, user);
+        User findUser = userService.findOne(request.getUserId());
+        postingService.savePosting(posting, findUser);
 
     }
 
@@ -76,6 +78,6 @@ public class PostingController {
     @Data
     static class SavePostingRequest {
         private PostingDto postingDto;
-        private UserDto userDto;
+        private Long userId;
     }
 }

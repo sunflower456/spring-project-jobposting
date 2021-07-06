@@ -34,15 +34,15 @@ public class Posting {
     @Enumerated(EnumType.STRING)
     private PostStatus postStatus;
 
-    @OneToMany(mappedBy = "posting", cascade = CascadeType.MERGE)
-    private List<Application> applications = new ArrayList<>();
+//    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL)
+//    private List<Application> applications = new ArrayList<>();
 
-    @OneToMany(mappedBy = "posting", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();
 
-    public void addApplication(Application application){
-        applications.add(application);
-    }
+//    public void addApplication(Application application){
+//        applications.add(application);
+//    }
     public void addQuestion(Question question){
         questions.add(question);
     }

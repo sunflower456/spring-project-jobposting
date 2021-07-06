@@ -37,6 +37,7 @@ public class ApplicationRepository {
             schoolInfo.setApplication(application);
         }
 
+
         application.setIntroduceInfos(introduceInfos);
         application.setQualifyInfos(qualifyInfos);
         application.setSchoolInfos(schoolInfos);
@@ -51,8 +52,8 @@ public class ApplicationRepository {
     }
 
     public List<Application> findByUser(User user){
-        return em.createQuery("select a from Application a where a.user = :user", Application.class)
-                .setParameter("user", user)
+        return em.createQuery("select a from Application a where a.userId = :user", Application.class)
+                .setParameter("user", user.getId())
                 .getResultList();
     }
 

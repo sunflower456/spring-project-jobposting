@@ -8,17 +8,10 @@ import java.util.List;
 
 @Data
 public class ApplicationDto {
-    private User user;
-    private Posting posting;
+    private Long userId;
+    private Long postingId;
     private List<SchoolInfo> schoolInfos = new ArrayList<>();
     private List<QualifyInfo> qualifyInfos = new ArrayList<>();
     private List<IntroduceInfo> introduceInfos = new ArrayList<>();
 
-    public void changeToDto(Application application){
-        this.user = application.getUser();
-        this.posting = application.getPosting();
-        this.schoolInfos = application.getSchoolInfos();
-        this.qualifyInfos = application.getQualifyInfos();
-        this.introduceInfos = application.getIntroduceInfos();
-    }
 }

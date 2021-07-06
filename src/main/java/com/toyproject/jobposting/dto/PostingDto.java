@@ -21,14 +21,6 @@ public class PostingDto {
 
     private PostStatus postStatus;
 
-    private List<Question> questions = new ArrayList<>();
+    private List<QuestionDto> questions = new ArrayList<>();
 
-    public void changeToDto(Posting posting){
-        this.title = posting.getTitle();
-        this.annoStaDate = posting.getAnnoStaDate();
-        this.annoEndDate = posting.getAnnoEndDate();
-        this.desc = posting.getDesc();
-        this.postStatus = posting.getPostStatus();
-        this.questions = posting.getQuestions();
-    }
 }

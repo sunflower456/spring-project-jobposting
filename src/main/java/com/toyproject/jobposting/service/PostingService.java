@@ -1,9 +1,7 @@
 package com.toyproject.jobposting.service;
 
 import com.toyproject.jobposting.Repository.PostingRepository;
-import com.toyproject.jobposting.entity.Posting;
-import com.toyproject.jobposting.entity.User;
-import com.toyproject.jobposting.entity.UserStatus;
+import com.toyproject.jobposting.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,13 +36,18 @@ public class PostingService {
     @Transactional
     public Posting updatePosting(Long id, Posting target){
         Posting find = postingRepository.findOne(id);
+
+        List<Question> findQuestions = target.getQuestions();
+        for (Question findQuestion : findQuestions) {
+            findQuestion.setPosting(find);
+        }
+        postingRepository.deleteQuestion(id);
         find.setTitle(target.getTitle());
         find.setDesc(target.getDesc());
-        //find.setQuestions(target.getQuestions());
+        find.setQuestions(findQuestions);
         find.setPostStatus(target.getPostStatus());
         find.setAnnoEndDate(target.getAnnoEndDate());
         find.setAnnoStaDate(target.getAnnoStaDate());
-        find.setApplications(target.getApplications());
         return find;
 
     }

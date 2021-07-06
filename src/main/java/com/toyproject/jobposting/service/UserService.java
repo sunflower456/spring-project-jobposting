@@ -44,7 +44,6 @@ public class UserService {
         find.setPassword(target.getPassword());
         find.setIdentity(target.getIdentity());
         find.setEmail(target.getEmail());
-        find.setApplications(target.getApplications());
         return find;
     }
 
