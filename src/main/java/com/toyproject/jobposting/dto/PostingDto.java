@@ -1,9 +1,6 @@
 package com.toyproject.jobposting.dto;
 
-import com.toyproject.jobposting.entity.Application;
 import com.toyproject.jobposting.entity.PostStatus;
-import com.toyproject.jobposting.entity.Posting;
-import com.toyproject.jobposting.entity.Question;
 import lombok.Data;
 
 import java.time.LocalDateTime;

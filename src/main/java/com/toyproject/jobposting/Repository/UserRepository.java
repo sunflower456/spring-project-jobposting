@@ -1,12 +1,10 @@
 package com.toyproject.jobposting.Repository;
 
-import com.toyproject.jobposting.entity.Application;
 import com.toyproject.jobposting.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.List;
 
 @Repository

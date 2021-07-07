@@ -1,11 +1,7 @@
 package com.toyproject.jobposting.controller;
 
 import com.toyproject.jobposting.dto.AppSaveDto;
-import com.toyproject.jobposting.dto.ApplicationDto;
-import com.toyproject.jobposting.dto.PostingDto;
 import com.toyproject.jobposting.entity.Application;
-import com.toyproject.jobposting.entity.Posting;
-import com.toyproject.jobposting.entity.User;
 import com.toyproject.jobposting.service.ApplicationService;
 import com.toyproject.jobposting.service.PostingService;
 import com.toyproject.jobposting.service.UserService;

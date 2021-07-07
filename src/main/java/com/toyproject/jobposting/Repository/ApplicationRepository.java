@@ -52,7 +52,7 @@ public class ApplicationRepository {
     }
 
     public List<Application> findByUser(User user){
-        return em.createQuery("select a from Application a where a.userId = :user", Application.class)
+        return em.createQuery("select a from Application a where  = :user", Application.class)
                 .setParameter("user", user.getId())
                 .getResultList();
     }

@@ -1,7 +1,5 @@
 package com.toyproject.jobposting.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.toyproject.jobposting.dto.QualifyInfoDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

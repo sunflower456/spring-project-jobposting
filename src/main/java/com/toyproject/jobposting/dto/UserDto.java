@@ -1,12 +1,9 @@
 package com.toyproject.jobposting.dto;
 
-import com.toyproject.jobposting.entity.Application;
 import com.toyproject.jobposting.entity.User;
 import com.toyproject.jobposting.entity.UserStatus;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 public class UserDto {

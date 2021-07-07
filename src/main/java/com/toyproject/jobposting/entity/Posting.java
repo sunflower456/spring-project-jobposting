@@ -1,8 +1,5 @@
 package com.toyproject.jobposting.entity;
 
-import com.sun.istack.NotNull;
-import com.toyproject.jobposting.dto.IntroduceInfoDto;
-import com.toyproject.jobposting.dto.PostingDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

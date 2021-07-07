@@ -1,14 +1,9 @@
 package com.toyproject.jobposting.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.toyproject.jobposting.entity.Application;
 import com.toyproject.jobposting.entity.SchoolInfo;
 import com.toyproject.jobposting.entity.SchoolStatus;
 import lombok.Data;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Data

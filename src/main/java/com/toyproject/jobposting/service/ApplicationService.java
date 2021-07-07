@@ -1,14 +1,11 @@
 package com.toyproject.jobposting.service;
 
 import com.toyproject.jobposting.Repository.ApplicationRepository;
-import com.toyproject.jobposting.Repository.PostingRepository;
-import com.toyproject.jobposting.Repository.UserRepository;
 import com.toyproject.jobposting.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,29 +37,61 @@ public class ApplicationService {
         Application find = applicationRepository.findOne(id);
 
 
+        // 변경 감지
         List<IntroduceInfo> introduceInfos = target.getIntroduceInfos();
+        List<IntroduceInfo> findIntroduceInfos = applicationRepository.findIntroduceInfo(id);
         for (IntroduceInfo introduceInfo : introduceInfos) {
             introduceInfo.setApplication(find);
+            for (IntroduceInfo findInfo : findIntroduceInfos) {
+                findInfo.setApplication(find);
+                System.out.println("findInfo = " + findInfo.getId());
+                findInfo.setQuestion(introduceInfo.getQuestion());
+                findInfo.setAnswer(introduceInfo.getAnswer());
+            }
+
+            //applicationRepository.saveIntroduceInfo(findInfo);
         }
 
         List<SchoolInfo> schoolInfos = target.getSchoolInfos();
+        List<SchoolInfo> findSchoolInfos = applicationRepository.findSchoolInfo(id);
         for (SchoolInfo schoolInfo : schoolInfos) {
-
             schoolInfo.setApplication(find);
+            for (SchoolInfo findInfo : findSchoolInfos) {
+                findInfo.setSchoolMajor(schoolInfo.getSchoolMajor());
+                findInfo.setSchoolStatus(schoolInfo.getSchoolStatus());
+                findInfo.setOrgName(schoolInfo.getOrgName());
+                findInfo.setOrgStaDate(schoolInfo.getOrgStaDate());
+                findInfo.setOrgEndDate(schoolInfo.getOrgEndDate());
+                findInfo.setJobTask(schoolInfo.getJobTask());
+                findInfo.setApplication(find);
+            }
+
+            //applicationRepository.saveSchoolInfo(findInfo);
 
         }
         List<QualifyInfo> qualifyInfos = target.getQualifyInfos();
+        List<QualifyInfo> findQualifyInfos = applicationRepository.findQualifyInfo(id);
         for (QualifyInfo qualifyInfo : qualifyInfos) {
             qualifyInfo.setApplication(find);
+            for (QualifyInfo findInfo : findQualifyInfos) {
+                findInfo.setApplication(find);
+                findInfo.setQualiStaDate(qualifyInfo.getQualiStaDate());
+                findInfo.setQualiOrg(qualifyInfo.getQualiOrg());
+                findInfo.setQualiNumber(qualifyInfo.getQualiNumber());
+                findInfo.setQualiEndDate(qualifyInfo.getQualiEndDate());
+                findInfo.setQualiName(qualifyInfo.getQualiName());
+            }
+
+            //applicationRepository.saveQulifyInfo(findInfo);
         }
 
-        applicationRepository.deleteIntroduceInfo(id);
-        applicationRepository.deleteQualifyInfo(id);
-        applicationRepository.deleteSchoolinfo(id);
+//        applicationRepository.deleteIntroduceInfo(id);
+//        applicationRepository.deleteQualifyInfo(id);
+//        applicationRepository.deleteSchoolinfo(id);
 
-        find.setSchoolInfos(schoolInfos);
-        find.setIntroduceInfos(introduceInfos);
-        find.setQualifyInfos(qualifyInfos);
+        find.setSchoolInfos(findSchoolInfos);
+        find.setIntroduceInfos(findIntroduceInfos);
+        find.setQualifyInfos(findQualifyInfos);
 
         return find;
     }
