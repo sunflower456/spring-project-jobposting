@@ -26,6 +26,7 @@ public class ApplicationRepository {
         List<QualifyInfo> qualifyInfos = application.getQualifyInfos();
         List<SchoolInfo> schoolInfos = application.getSchoolInfos();
         List<IntroduceInfo> introduceInfos = application.getIntroduceInfos();
+        List<BasicInfo> basicInfos = application.getBasicInfos();
 
         for (QualifyInfo qualifyInfo : qualifyInfos) {
             qualifyInfo.setApplication(application);
@@ -37,10 +38,14 @@ public class ApplicationRepository {
             schoolInfo.setApplication(application);
         }
 
+        for (BasicInfo basicInfo : basicInfos) {
+            basicInfo.setApplication(application);
+        }
 
         application.setIntroduceInfos(introduceInfos);
         application.setQualifyInfos(qualifyInfos);
         application.setSchoolInfos(schoolInfos);
+        application.setBasicInfos(basicInfos);
 
         em.persist(application);
     }
