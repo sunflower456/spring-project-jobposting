@@ -1,8 +1,11 @@
 package com.toyproject.jobposting.service;
 
 import com.toyproject.jobposting.Repository.UserRepository;
+import com.toyproject.jobposting.dto.LoginDto;
+import com.toyproject.jobposting.dto.UserDto;
 import com.toyproject.jobposting.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,19 +19,23 @@ public class UserService {
 
     @Transactional
     public void save(User user){
-        validateDuplicateUser(user);
+        LoginDto userDto = new LoginDto();
+        userDto.setIdentity(user.getIdentity());
+        userDto.setPassword(user.getPassword());
+        validateDuplicateUser(userDto);
         userRepository.save(user);
     }
 
-    private void validateDuplicateUser(User user) {
-        List<User> findUser = userRepository.findByIdentity(user.getIdentity());
+    private void validateDuplicateUser(LoginDto user) {
+
+        List<User> findUser = userRepository.findByIdentity(user);
         if(!findUser.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
 
-    public List<User> findByIdentity(String identity){
-        return userRepository.findByIdentity(identity);
+    public List<User> findByIdentity(LoginDto loginDto){
+        return userRepository.findByIdentity(loginDto);
     }
 
     public List<User> findUser() {

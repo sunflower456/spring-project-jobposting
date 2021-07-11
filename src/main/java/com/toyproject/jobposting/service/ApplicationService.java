@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Basic;
 import java.util.List;
 
 
@@ -85,9 +86,19 @@ public class ApplicationService {
             //applicationRepository.saveQulifyInfo(findInfo);
         }
 
-//        applicationRepository.deleteIntroduceInfo(id);
-//        applicationRepository.deleteQualifyInfo(id);
-//        applicationRepository.deleteSchoolinfo(id);
+        List<BasicInfo> basicInfos = target.getBasicInfos();
+        List<BasicInfo> findBasicInfos = applicationRepository.findBasicInfo(id);
+        for (BasicInfo basicInfo : basicInfos) {
+            basicInfo.setApplication(find);
+            for (BasicInfo findInfo : findBasicInfos) {
+                findInfo.setApplication(find);
+                findInfo.setAddress(basicInfo.getAddress());
+                findInfo.setEnglishName(basicInfo.getEnglishName());
+                findInfo.setName(basicInfo.getName());
+                findInfo.setNation(basicInfo.getNation());
+                findInfo.setPhoneNumber(basicInfo.getPhoneNumber());
+            }
+        }
 
         find.setSchoolInfos(findSchoolInfos);
         find.setIntroduceInfos(findIntroduceInfos);

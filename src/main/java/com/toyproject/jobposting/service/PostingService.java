@@ -33,6 +33,10 @@ public class PostingService {
         return postingRepository.findPostings();
     }
 
+    public List<Posting> findThreePosts(){
+        return postingRepository.findThreePosts();
+    }
+
     @Transactional
     public Posting updatePosting(Long id, Posting target){
         Posting find = postingRepository.findOne(id);
@@ -45,6 +49,7 @@ public class PostingService {
         find.setTitle(target.getTitle());
         find.setDesc(target.getDesc());
         find.setQuestions(findQuestions);
+        find.setJobkind((target.getJobkind()));
         find.setPostStatus(target.getPostStatus());
         find.setAnnoEndDate(target.getAnnoEndDate());
         find.setAnnoStaDate(target.getAnnoStaDate());

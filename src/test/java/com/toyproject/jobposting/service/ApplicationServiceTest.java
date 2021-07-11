@@ -23,7 +23,7 @@ class ApplicationServiceTest {
     @Test
     @Rollback(false)
     public void 지원서작성() throws Exception{
-        User user = userService.findByIdentity("hongcha").get(0);
+//        User user = userService.findByIdentity("hongcha");
 
     }
 }

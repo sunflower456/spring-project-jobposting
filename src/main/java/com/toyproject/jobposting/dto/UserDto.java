@@ -7,18 +7,12 @@ import lombok.Data;
 
 @Data
 public class UserDto {
+    private Long id;
     private String identity; // id
     private String name;
     private String email;
     private String phoneNumber;
+    private String password;
     private UserStatus userStatus;
-
-    public void changeToDto(User user){
-        this.identity = user.getIdentity();
-        this.name = user.getName();
-        this.email = user.getEmail();
-        this.phoneNumber = user.getPhoneNumber();
-        this.userStatus = user.getUserStatus();
-    }
 
 }

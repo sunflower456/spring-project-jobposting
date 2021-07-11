@@ -63,6 +63,12 @@ public class ApplicationRepository {
                 .getResultList();
     }
 
+    public List<BasicInfo> findBasicInfo(Long id){
+        return em.createQuery("select b from BasicInfo b where b.application.id = :id", BasicInfo.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
+
     public List<QualifyInfo> findQualifyInfo(Long id){
         return em.createQuery("select q from QualifyInfo q where q.application.id = :id", QualifyInfo.class)
                 .setParameter("id", id)

@@ -1,5 +1,6 @@
 package com.toyproject.jobposting.Repository;
 
+import com.toyproject.jobposting.dto.LoginDto;
 import com.toyproject.jobposting.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -16,12 +17,15 @@ public class UserRepository {
         em.persist(user);
     }
 
-    public List<User> findByIdentity(String identity) {
-        List<User> users = em.createQuery("select u from User u where u.identity = :identity", User.class)
-                .setParameter("identity", identity)
+    public List<User> findByIdentity(LoginDto loginDto) {
+        List<User> users =
+                em.createQuery("select u from User u where u.identity = :identity and u.password = :password", User.class)
+                .setParameter("identity", loginDto.getIdentity())
+                .setParameter("password", loginDto.getPassword())
                 .getResultList();
         return users;
     }
+
 
     public List<User> findUsers(){
         return em.createQuery("select u from User u", User.class)

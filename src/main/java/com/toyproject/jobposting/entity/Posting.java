@@ -6,6 +6,7 @@ import lombok.Setter;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,11 @@ public class Posting {
     private LocalDateTime annoStaDate; // posting announcement start date
     private LocalDateTime annoEndDate; // posting announcement end date
 
+    @Size(max=5000)
     private String desc;
 
+    @Enumerated(EnumType.STRING)
+    private JobKind jobkind;
 
     @Enumerated(EnumType.STRING)
     private PostStatus postStatus;

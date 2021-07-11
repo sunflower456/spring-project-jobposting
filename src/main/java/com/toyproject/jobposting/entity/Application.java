@@ -40,6 +40,8 @@ public class Application {
     @OneToMany(mappedBy = "application",cascade = CascadeType.ALL)
     private List<IntroduceInfo> introduceInfos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
+    private List<BasicInfo> basicInfos = new ArrayList<>();
 
     // 연관 관계 편의 메소드 //
 //    public void setUser(User user) {

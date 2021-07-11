@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class PostingController {
     private final PostingService postingService;
     private final UserService userService;
@@ -28,6 +29,19 @@ public class PostingController {
         ReadPostResponse<List<PostingDto>> response = new ReadPostResponse<>();
         for (Posting posting : postingList) {
             PostingDto postingDto = modelMapper.map(posting, PostingDto.class);
+            postingDtoList.add(postingDto);
+        }
+        response.setData(postingDtoList);
+        return response;
+    }
+
+    @GetMapping("/posts/main")
+    public ReadPostResponse postMain(){
+        List<Posting> findPosts = postingService.findThreePosts();
+        List<PostingDto> postingDtoList = new ArrayList<>();
+        ReadPostResponse<List<PostingDto>> response = new ReadPostResponse<>();
+        for (Posting findPost : findPosts) {
+            PostingDto postingDto = modelMapper.map(findPost, PostingDto.class);
             postingDtoList.add(postingDto);
         }
         response.setData(postingDtoList);

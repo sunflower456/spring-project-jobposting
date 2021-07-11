@@ -32,6 +32,12 @@ public class PostingRepository {
                 .getResultList();
     }
 
+    public List<Posting> findThreePosts(){
+        return em.createQuery("select p from Posting p where p.postStatus = 'OPEN' order by p.annoEndDate desc ", Posting.class)
+                .setMaxResults(3)
+                .getResultList();
+    }
+
     public void deletePosting(Long id){
         em.createQuery("delete from Posting p where p.id = :id")
                 .setParameter("id", id)

@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class ApplicationController {
     private final ApplicationService applicationService;
     private final UserService userService;
