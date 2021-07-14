@@ -21,32 +21,9 @@ public class ApplicationRepository {
     public void saveSchoolInfo(SchoolInfo schoolInfo){
         em.persist(schoolInfo);
     }
+    public void saveBasicInfo(BasicInfo basicInfo) {em.persist(basicInfo);}
 
     public void save(Application application){
-        List<QualifyInfo> qualifyInfos = application.getQualifyInfos();
-        List<SchoolInfo> schoolInfos = application.getSchoolInfos();
-        List<IntroduceInfo> introduceInfos = application.getIntroduceInfos();
-        List<BasicInfo> basicInfos = application.getBasicInfos();
-
-        for (QualifyInfo qualifyInfo : qualifyInfos) {
-            qualifyInfo.setApplication(application);
-        }
-        for (IntroduceInfo introduceInfo : introduceInfos) {
-            introduceInfo.setApplication(application);
-        }
-        for (SchoolInfo schoolInfo : schoolInfos) {
-            schoolInfo.setApplication(application);
-        }
-
-        for (BasicInfo basicInfo : basicInfos) {
-            basicInfo.setApplication(application);
-        }
-
-        application.setIntroduceInfos(introduceInfos);
-        application.setQualifyInfos(qualifyInfos);
-        application.setSchoolInfos(schoolInfos);
-        application.setBasicInfos(basicInfos);
-
         em.persist(application);
     }
 
@@ -56,34 +33,33 @@ public class ApplicationRepository {
         return findApp;
     }
 
+    public List<Application> findByPost(Long postingId){
+        return em.createQuery("select a from Application a where a.post_app_id = :id", Application.class)
+                .setParameter("id", postingId)
+                .getResultList();
+
+    }
+
     public List<Application> findByUser(User user){
-        return em.createQuery("select a from Application a where  = :user", Application.class)
+        return em.createQuery("select a from Application a where a.user_app_id  = :user", Application.class)
                 .setParameter("user", user.getId())
                 .getResultList();
     }
 
-    public List<IntroduceInfo> findIntroduceInfo(Long id){
-        return em.createQuery("select i from IntroduceInfo i where i.application.id = :id", IntroduceInfo.class)
-                .setParameter("id", id)
-                .getResultList();
+    public IntroduceInfo findIntroduceInfo(Long id){
+        return em.find(IntroduceInfo.class, id);
     }
 
-    public List<BasicInfo> findBasicInfo(Long id){
-        return em.createQuery("select b from BasicInfo b where b.application.id = :id", BasicInfo.class)
-                .setParameter("id", id)
-                .getResultList();
+    public BasicInfo findBasicInfo(Long id){
+        return em.find( BasicInfo.class, id);
     }
 
-    public List<QualifyInfo> findQualifyInfo(Long id){
-        return em.createQuery("select q from QualifyInfo q where q.application.id = :id", QualifyInfo.class)
-                .setParameter("id", id)
-                .getResultList();
+    public QualifyInfo findQualifyInfo(Long id){
+        return em.find(QualifyInfo.class, id);
     }
 
-    public List<SchoolInfo> findSchoolInfo(Long id){
-        return em.createQuery("select s from SchoolInfo s where s.application.id = :id", SchoolInfo.class)
-                .setParameter("id", id)
-                .getResultList();
+    public SchoolInfo findSchoolInfo(Long id){
+        return em.find(SchoolInfo.class, id);
     }
     public List<Application> findApps(){
         return em.createQuery("select a from Application a", Application.class)

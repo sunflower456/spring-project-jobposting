@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class QualifyInfoDto {
 
     private Long id;
+    private Long applicationId;
     private String qualiName;
     private String qualiNumber;
     private String qualiOrg;

@@ -7,6 +7,7 @@ import lombok.Data;
 public class IntroduceInfoDto {
 
     private Long id;
+    private Long applicationId;
     private String question; //
     private String answer;
 

@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 @Data
 public class SchoolInfoDto {
 
-//    private Long id;
+    private Long id;
+    private Long applicationId;
     private SchoolStatus schoolStatus;
     private String orgName;
     private String schoolMajor; // only when school
@@ -17,12 +18,4 @@ public class SchoolInfoDto {
     private LocalDateTime orgEndDate;
     private String jobTask; // only when career
 
-    public void toChangeDto(SchoolInfo schoolInfo){
-        this.jobTask = schoolInfo.getJobTask();
-        this.schoolMajor = schoolInfo.getSchoolMajor();
-        this.orgEndDate = schoolInfo.getOrgEndDate();
-        this.schoolStatus = schoolInfo.getSchoolStatus();
-        this.orgName = schoolInfo.getOrgName();
-        this.orgStaDate = schoolInfo.getOrgStaDate();
-    }
 }

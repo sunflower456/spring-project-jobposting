@@ -14,6 +14,8 @@ public class AppSaveDto {
     // post
 //    private PostxingDto posting;
 
+    private Long id;
+
     @NotNull
     private Long user_app_id;
     @NotNull
