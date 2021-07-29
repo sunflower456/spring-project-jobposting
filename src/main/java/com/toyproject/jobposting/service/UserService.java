@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +43,9 @@ public class UserService {
         return userRepository.findUsers();
     }
 
+    public List<User> findById(String Identity){
+        return userRepository.findById(Identity);
+    }
     @Transactional
     public User updateUser(Long id, User target){
         User find = userRepository.findOne(id);

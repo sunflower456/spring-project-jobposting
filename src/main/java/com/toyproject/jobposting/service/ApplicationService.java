@@ -16,8 +16,9 @@ public class ApplicationService {
     private final ApplicationRepository applicationRepository;
 
     @Transactional
-    public void save(Application application){
+    public Long save(Application application){
         applicationRepository.save(application);
+        return application.getId();
     }
 
     public Application findOne(Long id){

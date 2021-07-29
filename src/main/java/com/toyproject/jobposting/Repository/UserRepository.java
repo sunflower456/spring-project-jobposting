@@ -26,7 +26,12 @@ public class UserRepository {
         return users;
     }
 
+    public List<User> findById(String Identity){
+        return em.createQuery("select u from User u where u.identity = :identity", User.class)
+                .setParameter("identity", Identity)
+                .getResultList();
 
+    }
     public List<User> findUsers(){
         return em.createQuery("select u from User u", User.class)
                 .getResultList();

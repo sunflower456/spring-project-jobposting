@@ -57,10 +57,9 @@ public class ApplicationController {
     }
 
     @PostMapping("/apps")
-    public void saveApps(@RequestBody @Valid AppSaveDto request){
+    public Long saveApps(@RequestBody @Valid AppSaveDto request){
         Application app = modelMapper.map(request, Application.class);
-
-        applicationService.save(app);
+        return      applicationService.save(app);
     }
 
     @PostMapping("/apps/basic")
