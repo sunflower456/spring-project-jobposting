@@ -38,14 +38,10 @@ public class Posting {
 //    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL)
 //    private List<Application> applications = new ArrayList<>();
 
-    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL)
-    private List<Question> questions = new ArrayList<>();
+    @Embedded
+    private Question question;
 
 //    public void addApplication(Application application){
 //        applications.add(application);
 //    }
-    public void addQuestion(Question question){
-        questions.add(question);
-    }
-
 }

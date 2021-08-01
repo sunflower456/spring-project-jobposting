@@ -41,14 +41,10 @@ public class PostingService {
     public Posting updatePosting(Long id, Posting target){
         Posting find = postingRepository.findOne(id);
 
-        List<Question> findQuestions = target.getQuestions();
-        for (Question findQuestion : findQuestions) {
-            findQuestion.setPosting(find);
-        }
         postingRepository.deleteQuestion(id);
         find.setTitle(target.getTitle());
         find.setDesc(target.getDesc());
-        find.setQuestions(findQuestions);
+        find.setQuestion(target.getQuestion());
         find.setJobkind((target.getJobkind()));
         find.setPostStatus(target.getPostStatus());
         find.setAnnoEndDate(target.getAnnoEndDate());

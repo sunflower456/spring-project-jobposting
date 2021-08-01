@@ -15,11 +15,6 @@ public class PostingRepository {
     private final EntityManager em;
 
     public void save(Posting posting){
-        List<Question> findQuestion = posting.getQuestions();
-        for (Question question : findQuestion) {
-            question.setPosting(posting);
-        }
-        posting.setQuestions(findQuestion);
         em.persist(posting);
     }
 

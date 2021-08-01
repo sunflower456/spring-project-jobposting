@@ -7,26 +7,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 @Getter @Setter
-@NoArgsConstructor
 public class Question {
-    @Id @GeneratedValue
-    @Column(name = "question_id")
-    private Long id;
+    private String question1;
+    private String question2;
+    private String question3;
+    private String question4;
+    private String question5;
 
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "posting_id", nullable = false)
-    private Posting posting;
-
-    private String question;
-
-
-    // 연관 관계 편의 메소드 //
-//    public void setPosting(Posting posting) {
-//        this.posting = posting;
-//        posting.getQuestions().add(this);
-//    }
 }
